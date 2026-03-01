@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ニックネーム編集</title>
+</head>
+<body>
+
+<h1>ニックネーム編集</h1>
+
+<form th:action="@{/mypage/update}" method="post">
+    <label for="nickname">ニックネーム:</label>
+    <input type="text" id="nickname" name="nickname" th:value="${user.nickname}">
+    <br><br>
+    <label for="bio">自己紹介:</label>
+    <textarea id="bio" name="bio" rows="5" cols="30" th:text="${user.bio}"></textarea>
+    <br><br>
+    <button type="submit">保存</button>
+</form>
+
+<a th:href="@{/mypage}">戻る</a>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>マイページ</title>
+</head>
+<body>
+
+<h1>マイページ</h1>
+
+<p>ニックネーム: <span th:text="${user.nickname}">ニックネーム</span></p>
+<p>メール: <span th:text="${user.email}">メール</span></p>
+
+<h2>自己紹介</h2>
+<p th:if="${user.bio != null}" th:text="${user.bio}">自己紹介</p>
+<p th:if="${user.bio == null}">まだ自己紹介がありません</p>
+
+<a th:href="@{/mypage/edit}">プロフィール編集</a>
+
+</body>
+</html>

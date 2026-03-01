@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ログイン</title>
+</head>
+<body>
+
+<h2>ログイン</h2>
+
+<!-- ログインボタン押下後、メアドとパスワードをdtoに送る -->
+<form action="/login/submit" method="post">
+    <div>
+        <label>メールアドレス</label><br>
+        <input type="email" name="email">
+    </div>
+
+    <div>
+        <label>パスワード</label><br>
+        <input type="password" name="password">
+    </div>
+
+    <br>
+    <button type="submit">ログイン</button>
+</form>
+
+<br>
+
+<a href="/register">新規登録はこちら</a>
+
+</body>
+</html>
