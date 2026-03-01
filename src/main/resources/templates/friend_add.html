@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>友達追加</title>
+</head>
+<body>
+<h1 th:text="${friend.nickname} + ' さんを友達に追加'"></h1>
+
+<!-- 検索フォーム -->
+<form th:action="@{/friends/search}" method="get">
+    <input type="text" name="keyword" placeholder="検索">
+    <button type="submit">検索</button>
+</form>
+
+<a th:href="@{/friends/add}">戻る</a>
+
+</body>
+</html>

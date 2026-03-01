@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>友達検索</title>
+</head>
+<body>
+<h1>友達検索</h1>
+
+<form th:action="@{/friends/search}" method="get">
+    <input type="text" name="keyword" placeholder="検索キーワード">
+    <button type="submit">検索</button>
+</form>
+
+<!-- 検索結果 -->
+<table>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.nickname}">ユーザー名</td>
+        <td>
+            <form th:action="@{/friends/follow}" method="post">
+                <input type="hidden" name="currentUserId" value="1" /> <!-- 仮ログインユーザーID -->
+                <input type="hidden" th:name="followUserId" th:value="${user.id}" />
+                <button type="submit">フォロー</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<a th:href="@{/timeline}">タイムラインに戻る</a>
+
+</body>
+</html>

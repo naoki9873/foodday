@@ -31,4 +31,12 @@ public class UserService {
 
         return userRepository.save(user);
     }
+    
+    public User findById(Long userId) {
+        User user = userRepository.findById(userId).orElse(null); // 一旦 null で取得
+        if (user == null) {
+            throw new RuntimeException("ユーザーが存在しません");
+        }
+        return user;
+    }
 }
