@@ -7,20 +7,26 @@
 <body>
 <h1>タイムライン</h1>
 
-<!-- フォロー中ユーザー -->
 <h2>フォロー中ユーザー</h2>
 <table>
     <tr th:each="user : ${followedUsers}">
         <td th:text="${user.nickname}">ユーザー名</td>
-        <td th:text="${user.bio}">自己紹介</td> <!-- optional -->
+        <td th:text="${user.bio}">自己紹介</td>
     </tr>
 </table>
 
-<!-- 友達検索ボタン -->
+<h2>タイムライン写真</h2>
+<div th:each="photo : ${photos}">
+    <img th:src="${photo.imageUrl}" alt="写真" width="200">
+    <p th:text="${photo.comment}">コメント</p>
+</div>
+
 <h2>友達を探す</h2>
 <form th:action="@{/friends/search}" method="get">
     <button type="submit">検索画面へ</button>
 </form>
 
+<!-- 別ページに遷移 -->
+<a th:href="@{/timeline/capture}">写真を撮る</a>
 </body>
 </html>
