@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>写真撮影</title>
+</head>
+<body>
+<h1>写真を撮る</h1>
+
+<button id="startCameraBtn">カメラ起動</button>
+
+<div id="cameraSection" style="display:none;">
+    <video id="video" width="320" height="240" autoplay></video>
+    <button id="snapBtn">撮影</button>
+    <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+
+    <form th:action="@{/timeline/photo}" method="post">
+        <input type="hidden" name="imageData" id="imageData">
+        <input type="text" name="comment" placeholder="コメントを書く">
+        <input type="hidden" name="userId" value="1"/> <!-- 仮ログインユーザー -->
+        <button type="submit">送信</button>
+    </form>
+</div>
+
+<script th:inline="javascript">
+const startBtn = document.getElementById('startCameraBtn');
+const video = document.getElementById('video');
+const snapBtn = document.getElementById('snapBtn');
+const canvas = document.getElementById('canvas');
+const imageDataInput = document.getElementById('imageData');
+const cameraSection = document.getElementById('cameraSection');
+
+startBtn.addEventListener('click', async () => {
+    cameraSection.style.display = 'block';
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    video.srcObject = stream;
+});
+
+snapBtn.addEventListener('click', () => {
+    const context = canvas.getContext('2d');
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const dataURL = canvas.toDataURL('image/png');
+    imageDataInput.value = dataURL;
+});
+</script>
+</body>
+</html>
