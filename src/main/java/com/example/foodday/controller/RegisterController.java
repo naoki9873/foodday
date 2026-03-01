@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.foodday.dto.RegisterRequest;
 import com.example.foodday.service.RegisterService;
 
-//アカウント登録
+//アカウント登録ですよー!
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
