@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>タイムライン</title>
+</head>
+<body>
+<h1>タイムライン</h1>
+
+<!-- フォロー中ユーザー -->
+<h2>フォロー中ユーザー</h2>
+<table>
+    <tr th:each="user : ${followedUsers}">
+        <td th:text="${user.nickname}">ユーザー名</td>
+        <td th:text="${user.bio}">自己紹介</td> <!-- optional -->
+    </tr>
+</table>
+
+<!-- 友達検索ボタン -->
+<h2>友達を探す</h2>
+<form th:action="@{/friends/search}" method="get">
+    <button type="submit">検索画面へ</button>
+</form>
+
+</body>
+</html>
