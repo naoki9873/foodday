@@ -19,7 +19,7 @@ public class LoginService {
  // ログイン処理
     public UserEntity login(LoginRequest request) {
 
-        // ① 一致するメアドの情報を全て格納
+        // ① 一致するメアドの情報を全て格納???????????????????
     	UserEntity user = userRepository.findByEmail(request.getEmail());
 
         // ② 一致していない時の処理
