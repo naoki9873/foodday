@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.example.foodday.entity.Photo;
-import com.example.foodday.entity.User;
+import com.example.foodday.entity.UserEntity;
 import com.example.foodday.repository.PhotoRepository;
 import com.example.foodday.repository.UserRepository;
 
@@ -25,24 +25,23 @@ public class UserService {
     
     
  // ニックネーム＋自己紹介更新
-    public User updateProfile(Long userId, String nickname, String bio) {
+    public UserEntity updateProfile(Long userId, String nickname, String bio) {
 
-        Optional<User> optionalUser = userRepository.findById(userId);
+        Optional<UserEntity> optionalUser = userRepository.findById(userId);
 
         if (!optionalUser.isPresent()) {
             throw new RuntimeException("ユーザーが存在しません");
         }
 
-        User user = optionalUser.get();
+        UserEntity user = optionalUser.get();
 
-        user.setNickname(nickname);
         user.setBio(bio);
 
         return userRepository.save(user);
     }
     
-    public User findById(Long userId) {
-        User user = userRepository.findById(userId).orElse(null); // 一旦 null で取得
+    public UserEntity findById(Long userId) {
+    	UserEntity user = userRepository.findById(userId).orElse(null); // 一旦 null で取得
         if (user == null) {
             throw new RuntimeException("ユーザーが存在しません");
         }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.foodday.entity.User;
+import com.example.foodday.entity.UserEntity;
 import com.example.foodday.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -25,7 +25,7 @@ public class MypageEditController {
 	@GetMapping("/edit")
 	public String edit(HttpSession session, Model model) {
 
-		User loginUser = (User) session.getAttribute("loginUser");
+		UserEntity loginUser = (UserEntity) session.getAttribute("loginUser");
 
 		if (loginUser == null) {
 			return "redirect:/login";
@@ -40,14 +40,14 @@ public class MypageEditController {
 	                     @RequestParam String bio,
 	                     HttpSession session) {
 
-	    User loginUser = (User) session.getAttribute("loginUser");
+		UserEntity loginUser = (UserEntity) session.getAttribute("loginUser");
 
 	    if (loginUser == null) {
 	        return "redirect:/login";
 	    }
 
 	    // UserService で更新
-	    User updatedUser = userService.updateProfile(loginUser.getId(), nickname, bio);
+	    UserEntity updatedUser = userService.updateProfile(loginUser.getId(), nickname, bio);
 
 	    // セッションも更新
 	    session.setAttribute("loginUser", updatedUser);

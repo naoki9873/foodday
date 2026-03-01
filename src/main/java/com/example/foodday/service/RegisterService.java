@@ -1,32 +1,35 @@
 package com.example.foodday.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.foodday.dto.RegisterRequest;
-import com.example.foodday.entity.User;
+import com.example.foodday.entity.UserEntity;
 import com.example.foodday.repository.UserRepository;
 
 @Service
 public class RegisterService {
 
-    private final UserRepository repository;
+	//インスタンス化
+	@Autowired
+	private UserRepository repository;
 
-    public RegisterService(UserRepository repository) {
-        this.repository = repository;
-    }
-    
-    //DB登録メソッド
-    public void registerTemporaryUser(RegisterRequest request) {
-    	
-        System.out.println("!!!!!！");
+	// DB登録メソッド（処理だけ）
+	public void registerTemporaryUser(RegisterRequest request) {
+		UserEntity user = new UserEntity();
+		user.setUsername(request.getUsername());
+		user.setUserid(request.getUserid());
+		user.setEmail(request.getEmail());
+		user.setPassword(request.getPassword());
 
-    	User user = new User();
-        user.setNickname(request.getNickname());
-        user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword()); 
+		repository.save(user);
+	}
 
-        repository.save(user);
+	// ユーザーIDが既に存在するかチェック
+	public boolean isUseridTaken(String userid) {
+		
+		//ユーザーIDが存在した場合falseを返し、存在しない場合trueを返す
+		return repository.findByUserid(userid) != null;
+	}
 
-        System.out.println("DB保存完了！");
-    }
 }

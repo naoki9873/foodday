@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.foodday.entity.Photo;
-import com.example.foodday.entity.User;
+import com.example.foodday.entity.UserEntity;
 import com.example.foodday.service.FriendService;
 import com.example.foodday.service.UserService;
 
@@ -23,7 +23,7 @@ public class TimelineController {
     @GetMapping("/timeline")
     public String showTimeline(Model model) {
         Long currentUserId = 1L;
-        List<User> followedUsers = friendService.findFollowedUsers(currentUserId);
+        List<UserEntity> followedUsers = friendService.findFollowedUsers(currentUserId);
         List<Photo> photos = userService.getUserPhotos(currentUserId);
 
         model.addAttribute("followedUsers", followedUsers);

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.foodday.entity.User;
+import com.example.foodday.entity.UserEntity;
 import com.example.foodday.service.FriendService;
 import com.example.foodday.service.UserService;
 
@@ -25,7 +25,7 @@ public class FriendController {
     // 個別ユーザー追加画面
     @GetMapping("/friends/add")
     public String addFriendPage(@RequestParam Long userId, Model model) {
-        User user = userService.findById(userId);
+    	UserEntity user = userService.findById(userId);
         model.addAttribute("friend", user);
         return "friend_add";
     }
@@ -33,7 +33,7 @@ public class FriendController {
     // 検索画面
     @GetMapping("/friends/search")
     public String searchUsers(@RequestParam(required = false) String keyword, Model model) {
-        List<User> users;
+        List<UserEntity> users;
         if (keyword != null && !keyword.isEmpty()) {
             users = friendService.searchUsers(keyword);
         } else {
