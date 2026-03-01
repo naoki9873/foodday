@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.foodday.entity.User;
+import com.example.foodday.entity.UserEntity;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -15,7 +15,7 @@ public class MypageController {
 	public String showMypage(HttpSession session, Model model) {
 
 		// セッションからログインユーザー取得
-		User loginUser = (User) session.getAttribute("loginUser");
+		UserEntity loginUser = (UserEntity) session.getAttribute("loginUser");
 
 		// 未ログインならログイン画面へ
 		if (loginUser == null) {

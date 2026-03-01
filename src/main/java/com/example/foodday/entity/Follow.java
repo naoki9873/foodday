@@ -20,11 +20,11 @@ public class Follow {
 
     @ManyToOne
     @JoinColumn(name = "follower_id")
-    private User follower;
+    private UserEntity follower;
 
     @ManyToOne
     @JoinColumn(name = "followee_id")
-    private User followee;
+    private UserEntity followee;
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
@@ -32,11 +32,11 @@ public class Follow {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public User getFollower() { return follower; }
-    public void setFollower(User follower) { this.follower = follower; }
+    public UserEntity getFollower() { return follower; }
+    public void setFollower(UserEntity follower) { this.follower = follower; }
 
-    public User getFollowee() { return followee; }
-    public void setFollowee(User followee) { this.followee = followee; }
+    public UserEntity getFollowee() { return followee; }
+    public void setFollowee(UserEntity followee) { this.followee = followee; }
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }

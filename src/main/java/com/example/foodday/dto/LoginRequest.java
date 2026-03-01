@@ -1,28 +1,11 @@
 package com.example.foodday.dto;
 
-/**
- * ログイン用リクエストDTO
- */
+import lombok.Data;
+
+//ログイン処理するときに受け取るクラス
+@Data
 public class LoginRequest {
 
     private String email;
     private String password;
-
-    // getter / setter
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
