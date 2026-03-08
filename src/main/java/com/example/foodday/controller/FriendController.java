@@ -43,7 +43,7 @@ public class FriendController {
         return "friend_search";
     }
 
-    // フォロー処理
+    // フォロー処理を行う
     @PostMapping("/friends/follow")
     public String followUser(@RequestParam Long currentUserId, @RequestParam Long followUserId) {
         friendService.followUser(currentUserId, followUserId);
