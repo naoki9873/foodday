@@ -11,8 +11,8 @@
 <h1>ニックネーム編集</h1>
 
 <form th:action="@{/mypage/update}" method="post">
-    <label for="nickname">ニックネーム:</label>
-    <input type="text" id="nickname" name="nickname" th:value="${user.nickname}">
+    <label for="username">ニックネーム:</label>
+    <input type="text" id="username" name="username" th:value="${user.username}">
     <br><br>
     <label for="bio">自己紹介:</label>
     <textarea id="bio" name="bio" rows="5" cols="30" th:text="${user.bio}"></textarea>

@@ -23,12 +23,8 @@
     <p th:text="${photo.comment}">コメント</p>
 </div>
 
-<h2>友達を探す</h2>
-<form th:action="@{/friends/search}" method="get">
-    <button type="submit">検索画面へ</button>
-</form>
 
-<!-- 別ページに遷移 -->
-<a th:href="@{/timeline/capture}">写真を撮る</a>
+ <!-- フッター共通読み込み -->
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
