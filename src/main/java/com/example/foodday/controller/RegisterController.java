@@ -31,12 +31,7 @@ public class RegisterController {
 	@PostMapping("/submit")
 	public String register(@ModelAttribute RegisterRequest request , Model model) {//dtoから4つの情報を受け取る
 		
-		// ユーザーID重複チェック
-	    if (registerService.isUseridTaken(request.getUserid())) {
-	    	//重複の場合エラーメッセージ
-	        model.addAttribute("errorMessage", "そのユーザーIDはすでに使われています");
-	        return "register";
-	    }
+	
 		
 		// パスワード一致しているか確認
 		if (!request.getPassword().equals(request.getPasswordConfirm())) {

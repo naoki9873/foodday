@@ -37,7 +37,7 @@ public class LoginController {
 		// ログイン成功したユーザー取得
 		UserEntity user = loginService.login(request);
 
-		//
+		//セッションにセット
 		session.setAttribute("loginUser", user);
 
 		return "redirect:/mypage";

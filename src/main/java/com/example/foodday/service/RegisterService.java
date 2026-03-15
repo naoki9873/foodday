@@ -14,22 +14,16 @@ public class RegisterService {
 	@Autowired
 	private UserRepository repository;
 
-	// DB登録メソッド（処理だけ）
+	// DB登録メソッド
 	public void registerTemporaryUser(RegisterRequest request) {
 		UserEntity user = new UserEntity();
 		user.setUsername(request.getUsername());
-		user.setUserid(request.getUserid());
 		user.setEmail(request.getEmail());
 		user.setPassword(request.getPassword());
-
+		//DB登録
 		repository.save(user);
 	}
 
-	// ユーザーIDが既に存在するかチェック
-	public boolean isUseridTaken(String userid) {
-		
-		//ユーザーIDが存在した場合falseを返し、存在しない場合trueを返す
-		return repository.findByUserid(userid) != null;
-	}
+	
 
 }

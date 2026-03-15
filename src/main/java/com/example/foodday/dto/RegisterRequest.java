@@ -1,4 +1,3 @@
-
 package com.example.foodday.dto;
 
 import jakarta.validation.constraints.Email;
@@ -11,13 +10,9 @@ import lombok.Data;
 @Data
 public class RegisterRequest {
 
-	@NotBlank(message = "ニックネームは必須です")
-	@Size(min = 1, max = 20, message = "ニックネームは1～20文字で入力してください")
+	@NotBlank(message = "ユーザー名は必須です")
+	@Size(min = 1, max = 20, message = "ユーザー名は1～20文字で入力してください")
 	private String username; // ユーザー名（ニックネーム）
-
-	@NotBlank(message = "ユーザーIDは必須です")
-	@Size(min = 3, max = 50, message = "ユーザーIDは3～50文字で入力してください")
-	private String userid; // ユーザーID
 
 	@NotBlank(message = "メールアドレスは必須です")
 	@Email(message = "メールアドレスの形式が不正です")
