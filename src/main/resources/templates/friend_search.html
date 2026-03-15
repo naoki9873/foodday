@@ -17,7 +17,7 @@
 <!-- 検索結果 -->
 <table>
     <tr th:each="user : ${users}">
-        <td th:text="${user.nickname}">ユーザー名</td>
+        <td th:text="${user.username}">ユーザー名</td>
         <td>
             <form th:action="@{/friends/follow}" method="post">
                 <input type="hidden" name="currentUserId" value="1" /> <!-- 仮ログインユーザーID -->
@@ -28,7 +28,8 @@
     </tr>
 </table>
 
-<a th:href="@{/timeline}">タイムラインに戻る</a>
+ <!-- フッター共通読み込み -->
+    <div th:replace="fragments/footer :: footer"></div>
 
 </body>
 </html>

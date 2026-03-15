@@ -40,6 +40,6 @@ public class LoginController {
 		//セッションにセット
 		session.setAttribute("loginUser", user);
 
-		return "redirect:/mypage";
+		return "redirect:/timeline";
 	}
 }
