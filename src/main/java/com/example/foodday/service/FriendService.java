@@ -2,6 +2,7 @@ package com.example.foodday.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,14 +13,13 @@ import com.example.foodday.repository.UserRepository;
 
 @Service
 public class FriendService {
+	
+	@Autowired
+    private UserRepository userRepository;
+	
+	@Autowired
+    private FollowRepository followRepository;
 
-    private final UserRepository userRepository;
-    private final FollowRepository followRepository;
-
-    public FriendService(UserRepository userRepository, FollowRepository followRepository) {
-        this.userRepository = userRepository;
-        this.followRepository = followRepository;
-    }
 
     // フォロー中ユーザー取得
     public List<UserEntity> findFollowedUsers(Long currentUserId) {
@@ -31,7 +31,7 @@ public class FriendService {
         return userRepository.findByUsernameContaining(keyword);
     }
 
-    // フォローする
+    // フォロー処理
     @Transactional
     public void followUser(Long currentUserId, Long followUserId) {
     	UserEntity follower = userRepository.findById(currentUserId).orElseThrow();
@@ -42,5 +42,13 @@ public class FriendService {
         follow.setFollowee(followee);
 
         followRepository.save(follow);
+    }
+    
+    public boolean isFollowing(Long currentUserId, Long followUserId) {
+        return followRepository.existsByFollowerIdAndFolloweeId(currentUserId, followUserId);
+    }
+
+    public void unfollowUser(Long currentUserId, Long followUserId) {
+        followRepository.deleteByFollowerIdAndFolloweeId(currentUserId, followUserId);
     }
 }

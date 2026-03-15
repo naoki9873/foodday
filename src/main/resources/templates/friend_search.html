@@ -28,6 +28,17 @@
     </tr>
 </table>
 
+<form th:action="@{/friends/follow}" method="post">
+
+<input type="hidden" name="currentUserId" th:value="${currentUserId}">
+<input type="hidden" name="followUserId" th:value="${user.id}">
+
+<button type="submit">フォロー</button>
+
+</form>
+
+</form>
+
  <!-- フッター共通読み込み -->
     <div th:replace="fragments/footer :: footer"></div>
 

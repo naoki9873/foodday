@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.foodday.entity.UserEntity;
@@ -14,6 +15,7 @@ import com.example.foodday.service.FriendService;
 import com.example.foodday.service.UserService;
 
 @Controller
+@RequestMapping("/friends")
 public class FriendController {
 
     @Autowired
@@ -23,30 +25,44 @@ public class FriendController {
     private FriendService friendService;
 
     // 個別ユーザー追加画面
-    @GetMapping("/friends/add")
+    @GetMapping("/add")
     public String addFriendPage(@RequestParam Long userId, Model model) {
-    	UserEntity user = userService.findById(userId);
+        UserEntity user = userService.findById(userId);
         model.addAttribute("friend", user);
         return "friend_add";
     }
 
-    // 検索画面
-    @GetMapping("/friends/search")
-    public String searchUsers(@RequestParam(required = false) String keyword, Model model) {
+    @GetMapping("/search")
+    public String searchUsers(@RequestParam(required = false) String keyword,
+                              @RequestParam Long currentUserId,
+                              Model model) {
+
         List<UserEntity> users;
+
         if (keyword != null && !keyword.isEmpty()) {
             users = friendService.searchUsers(keyword);
         } else {
             users = List.of();
         }
+
         model.addAttribute("users", users);
+        model.addAttribute("currentUserId", currentUserId);
+
         return "friend_search";
     }
 
-    // フォロー処理を行う
-    @PostMapping("/friends/follow")
-    public String followUser(@RequestParam Long currentUserId, @RequestParam Long followUserId) {
-        friendService.followUser(currentUserId, followUserId);
-        return "redirect:/timeline";
+    // フォロー / フォロー解除（トグル）
+    @PostMapping("/follow")
+    public String followUser(
+            @RequestParam Long currentUserId,
+            @RequestParam Long followUserId) {
+
+        if (friendService.isFollowing(currentUserId, followUserId)) {
+            friendService.unfollowUser(currentUserId, followUserId);
+        } else {
+            friendService.followUser(currentUserId, followUserId);
+        }
+
+        return "redirect:/friends/search?currentUserId=" + currentUserId;
     }
 }

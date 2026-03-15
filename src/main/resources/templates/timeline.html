@@ -12,7 +12,7 @@
 <h2>フォロー中ユーザー</h2>
 <table>
     <tr th:each="user : ${followedUsers}">
-        <td th:text="${user.nickname}">ユーザー名</td>
+        <td th:text="${user.username}">ユーザー名</td>
         <td th:text="${user.bio}">自己紹介</td>
     </tr>
 </table>
