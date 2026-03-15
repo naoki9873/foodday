@@ -18,7 +18,6 @@ public class UserEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String username;
-	private String userid; // ユーザーID
 	private String email;
 	private String password;
 	private String bio;//自己紹介文

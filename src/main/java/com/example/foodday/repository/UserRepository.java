@@ -12,9 +12,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     
 	// username で検索
 	List<UserEntity> findByUsernameContaining(String keyword);
-	
-	//入力されたユーザーIDと一致したらそれを返し、ない場合はnullを返す
-    UserEntity findByUserid(String userid); 
 
     // フォロー中ユーザー取得
     @Query("SELECT f.followee FROM Follow f WHERE f.follower.id = :followerId")
