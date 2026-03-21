@@ -23,6 +23,12 @@ public class FriendController {
 
     @Autowired
     private FriendService friendService;
+    
+    @GetMapping
+    public String showFriend(Model model) {
+        model.addAttribute("currentUserId", 1L);
+        return "friend_search";
+    }
 
     // 個別ユーザー追加画面
     @GetMapping("/add")
