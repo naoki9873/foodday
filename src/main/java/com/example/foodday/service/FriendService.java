@@ -48,6 +48,7 @@ public class FriendService {
         return followRepository.existsByFollowerIdAndFolloweeId(currentUserId, followUserId);
     }
 
+    @Transactional
     public void unfollowUser(Long currentUserId, Long followUserId) {
         followRepository.deleteByFollowerIdAndFolloweeId(currentUserId, followUserId);
     }
